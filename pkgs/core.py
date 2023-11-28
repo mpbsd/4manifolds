@@ -17,7 +17,7 @@ class pseudo_riemannian_metric:
             [
                 0.5
                 * (
-                    +self.g[i, l].diff(self.x[j], 1)
+                    + self.g[i, l].diff(self.x[j], 1)
                     + self.g[j, l].diff(self.x[i], 1)
                     - self.g[i, j].diff(self.x[k], 1)
                 )
@@ -29,11 +29,11 @@ class pseudo_riemannian_metric:
     # R_{ijk}^{l}
     def curvature_tensor(self, i, j, k, l):
         return (
-            +self.christoffel_symbol(i, k, l).diff(self.x[j], 1)
+            + self.christoffel_symbol(i, k, l).diff(self.x[j], 1)
             - self.christoffel_symbol(i, j, l).diff(self.x[k], 1)
         ) + sum(
             [
-                +self.christoffel_symbol(i, k, m)
+                + self.christoffel_symbol(i, k, m)
                 * self.christoffel_symbol(m, j, l)
                 - self.christoffel_symbol(i, j, m)
                 * self.christoffel_symbol(m, k, l)
@@ -81,15 +81,20 @@ class pseudo_riemannian_metric:
 def main():
     x = sp.Array([sp.symbols("x_%d" % i) for i in range(4)])
 
-    sigma = [1, 2, 3, 0]
+    # sigma = [1, 2, 3, 0]
 
-    u_0 = sp.Function("u_0")(x[sigma[0]])
-    u_1 = sp.Function("u_1")(x[sigma[1]])
-    u_2 = sp.Function("u_2")(x[sigma[2]])
-    u_3 = sp.Function("u_3")(x[sigma[3]])
+    # u_0 = sp.Function("u_0")(x[sigma[0]])
+    # u_1 = sp.Function("u_1")(x[sigma[1]])
+    # u_2 = sp.Function("u_2")(x[sigma[2]])
+    # u_3 = sp.Function("u_3")(x[sigma[3]])
+
+    u_0 = 0
+    u_1 = sp.ln(sp.cosh(x[2]))
+    u_2 = 0
+    u_3 = sp.ln(sp.cosh(x[0]))
 
     diag = [
-        -sp.exp(2 * u_0),
+        +sp.exp(2 * u_0),
         +sp.exp(2 * u_1),
         +sp.exp(2 * u_2),
         +sp.exp(2 * u_3),
@@ -103,6 +108,14 @@ def main():
                 print(
                     "%d, %d: %s"
                     % (i, j, sp.latex(diagonal_metric.ricci_tensor(i, j))),
+                    file=log_file,
+                )
+        print("---", file=log_file)
+        for i in range(3):
+            for j in range(i + 1, 4):
+                print(
+                    "%d, %d: %s"
+                    % (i, j, sp.latex(diagonal_metric.sectional_curvature(i, j))),
                     file=log_file,
                 )
 
