@@ -81,17 +81,10 @@ class pseudo_riemannian_metric:
 def main():
     x = sp.Array([sp.symbols("x_%d" % i) for i in range(4)])
 
-    # sigma = [1, 2, 3, 0]
-
-    # u_0 = sp.Function("u_0")(x[sigma[0]])
-    # u_1 = sp.Function("u_1")(x[sigma[1]])
-    # u_2 = sp.Function("u_2")(x[sigma[2]])
-    # u_3 = sp.Function("u_3")(x[sigma[3]])
-
-    u_0 = 0
-    u_1 = sp.ln(sp.cosh(x[2]))
-    u_2 = 0
-    u_3 = sp.ln(sp.cosh(x[0]))
+    u_0 = sp.Function("u_0")(x[0], x[1])
+    u_1 = sp.Function("u_1")(x[0], x[1])
+    u_2 = sp.Function("u_2")(x[2], x[3])
+    u_3 = sp.Function("u_3")(x[2], x[3])
 
     diag = [
         +sp.exp(2 * u_0),

@@ -1,116 +1,17 @@
-\[
-  \begin{array}{ll}
-    0, 0: & -e^{2(u_{0}-u_{1})}(\dot{u}_{0}^{2}+\ddot{u}_{0})-(\dot{u}_{3}^{2}+\ddot{u}_{3}) \\
-    0, 1: & \dot{u}_{0}\dot{u}_{3}                                                           \\
-    0, 2: & 0                                                                                \\
-    0, 3: & \dot{u}_{2}\dot{u}_{3}                                                           \\
-    1, 1: & -e^{2(u_{1}-u_{2})}(\dot{u}_{1}^{2}+\ddot{u}_{1})-(\dot{u}_{0}^{2}+\ddot{u}_{0}) \\
-    1, 2: & \dot{u}_{0}\dot{u}_{1}                                                           \\
-    1, 3: & 0                                                                                \\
-    2, 2: & -e^{2(u_{2}-u_{3})}(\dot{u}_{2}^{2}+\ddot{u}_{2})-(\dot{u}_{1}^{2}+\ddot{u}_{1}) \\
-    2, 3: & \dot{u}_{1}\dot{u}_{2}                                                           \\
-    3, 3: & -e^{2(u_{3}-u_{0})}(\dot{u}_{3}^{2}+\ddot{u}_{3})-(\dot{u}_{2}^{2}+\ddot{u}_{2})
-  \end{array}
-\]
-
-Let's assume that both \(u_{0}=\textup{const}\) and \(u_{2}=\textup{const}\)
-
-\[
-  \begin{array}{ll}
-    0, 0: & -(\dot{u}_{3}^{2}+\ddot{u}_{3})                   \\
-    0, 1: & 0                                                 \\
-    0, 2: & 0                                                 \\
-    0, 3: & 0                                                 \\
-    1, 1: & -e^{2(u_{1}-u_{2})}(\dot{u}_{1}^{2}+\ddot{u}_{1}) \\
-    1, 2: & 0                                                 \\
-    1, 3: & 0                                                 \\
-    2, 2: & -(\dot{u}_{1}^{2}+\ddot{u}_{1})                   \\
-    2, 3: & 0                                                 \\
-    3, 3: & -e^{2(u_{3}-u_{0})}(\dot{u}_{3}^{2}+\ddot{u}_{3})
-  \end{array}
-\]
-
-Now, let's require that \(\textup{Rc}=\Lambda{g}\) for some constant
-\(\Lambda\in{\mathbb{R}}\). Then, we get that
-
-\[
-  \begin{array}{ll}
-    0, 0: & \Lambda{e^{2u_{0}}}=-(\dot{u}_{3}^{2}+\ddot{u}_{3})                   \\
-    0, 1: & 0                                                                     \\
-    0, 2: & 0                                                                     \\
-    0, 3: & 0                                                                     \\
-    1, 1: & \Lambda{e^{2u_{1}}}=-e^{2(u_{1}-u_{2})}(\dot{u}_{1}^{2}+\ddot{u}_{1}) \\
-    1, 2: & 0                                                                     \\
-    1, 3: & 0                                                                     \\
-    2, 2: & \Lambda{e^{2u_{2}}}=-(\dot{u}_{1}^{2}+\ddot{u}_{1})                   \\
-    2, 3: & 0                                                                     \\
-    3, 3: & \Lambda{e^{2u_{3}}}=-e^{2(u_{3}-u_{0})}(\dot{u}_{3}^{2}+\ddot{u}_{3})
-  \end{array}
-\]
-
-which is equivalent to the following system:
-
-\[
-  \left\{
-    \begin{array}{rcl}
-      \ddot{u}_{1}+\dot{u}_{1}^{2} & = & -\Lambda{e^{2u_{2}}} \\
-      \ddot{u}_{3}+\dot{u}_{3}^{2} & = & -\Lambda{e^{2u_{0}}}
-    \end{array}
-  \right.
-\]
-
-\[
-  \begin{array}{rcl}
-    u_{1}(x_{2}) & = & \ln{\cosh{\left(x_{2}e^{u_{2}}\sqrt{-\Lambda}\right)}} \\
-    u_{3}(x_{0}) & = & \ln{\cosh{\left(x_{0}e^{u_{0}}\sqrt{-\Lambda}\right)}}
-  \end{array}
-\]
-
-\[
-  g
-  =
-  e^{2u_{0}}dx_{0}^{2}
-  +
-  \cosh^{2}{\left(x_{2}e^{u_{2}}\sqrt{-\Lambda}\right)}dx_{1}^{2}
-  +
-  e^{2u_{2}}dx_{2}^{2}
-  +
-  \cosh^{2}{\left(x_{0}e^{u_{0}}\sqrt{-\Lambda}\right)}dx_{3}^{2}
-\]
-
-\[
-  u_{0}=u_{1}=0
-  \quad\textup{and}\quad
-  \Lambda=-1,
-\]
-
-\[
-  g
-  =
-  dx_{0}^{2}
-  +
-  \cosh^{2}{\left(x_{2}\right)}dx_{1}^{2}
-  +
-  dx_{2}^{2}
-  +
-  \cosh^{2}{\left(x_{0}\right)}dx_{3}^{2}
-\]
-
-\[
-  \begin{array}{ll}
-    0, 0: & -1                             \\
-    0, 1: & 0                              \\
-    0, 2: & 0                              \\
-    0, 3: & 0                              \\
-    1, 1: & -\cosh^{2}{\left(x_{2}\right)} \\
-    1, 2: & 0                              \\
-    1, 3: & 0                              \\
-    2, 2: & -1                             \\
-    2, 3: & 0                              \\
-    3, 3: & -\cosh^{2}{\left(x_{0}\right)}
-  \end{array}
-\]
-
-:%s/{\x_{[0-3]} \}//g
-:%s/\\frac{d}{d x_{[0-3]}} u_{\([0-3]\)}/\\dot{u}_{\1}/g
-:%s/\\frac{d^{2}}{d x_{[0-3]}^{2}} u_{\([0-3]\)}/\\ddot{u}_{\1}/g
+0, 0: -e^{2 u_{0}} e^{- 2 u_{1}} \dot{u}_{0}^{2} -e^{2 u_{0}} e^{- 2 u_{1}} \ddot{u}_{0} -\dot{u}_{1}^{2} -\ddot{u}_{1}
+0, 1: 0
+0, 2: 0
+0, 3: 0
+1, 1: -\dot{u}_{0}^{2} -\ddot{u}_{0} -e^{- 2 u_{0}} e^{2 u_{1}} \dot{u}_{1}^{2} -e^{- 2 u_{0}} e^{2 u_{1}} \ddot{u}_{1}
+1, 2: 0
+1, 3: 0
+2, 2: -e^{2 u_{2}} e^{- 2 u_{3}} \dot{u}_{2}^{2} -e^{2 u_{2}} e^{- 2 u_{3}} \ddot{u}_{2} -\dot{u}_{3}^{2} -\ddot{u}_{3}
+2, 3: 0
+3, 3: -\dot{u}_{2}^{2} -\ddot{u}_{2} -e^{- 2 u_{2}} e^{2 u_{3}} \dot{u}_{3}^{2} -e^{- 2 u_{2}} e^{2 u_{3}} \ddot{u}_{3}
+---
+0, 1: \left(-e^{2 u_{0}} e^{- 2 u_{1}} \dot{u}_{0}^{2} -e^{2 u_{0}} e^{- 2 u_{1}} \ddot{u}_{0} -\dot{u}_{1}^{2} -\ddot{u}_{1}\right) e^{- 2 u_{0}}
+0, 2: 0
+0, 3: 0
+1, 2: 0
+1, 3: 0
+2, 3: \left(-e^{2 u_{2}} e^{- 2 u_{3}} \dot{u}_{2}^{2} -e^{2 u_{2}} e^{- 2 u_{3}} \ddot{u}_{2} -\dot{u}_{3}^{2} -\ddot{u}_{3}\right) e^{- 2 u_{2}}
